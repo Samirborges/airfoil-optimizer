@@ -3,6 +3,7 @@ import Container from "./components/containers/container"
 import ContainerLeft from "./components/containers/containerLeft"
 import ContainerRight from "./components/containers/containerRight"
 import imagem from "./img/ChatGPT Image 26 de jul. de 2025, 15_34_38.png"
+import CalculatorContainer from "./components/containers/CalculatorContainer"
 
 function App() {
   
@@ -37,6 +38,11 @@ function App() {
             <img src="https://placehold.co/405x371" alt="Placeholder" className="img-select-input-airfol" />          
           </ContainerRight>
         </Container>
+      </section>
+
+
+      <section>
+        <CalculatorContainer />
       </section>
     </>
   )
