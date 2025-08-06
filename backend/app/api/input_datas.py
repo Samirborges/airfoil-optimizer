@@ -28,6 +28,8 @@ async def input_datas(input_payload: InputPayload):
     Endpoint que recebe as informações do aermodelo
     """
     
+    # TODO Adicionar validação das informações do Input
+    
     data_format = format_input_payload(input_payload)
 
     return {

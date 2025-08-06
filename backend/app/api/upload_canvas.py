@@ -13,7 +13,7 @@ async def upload_canvas(canvas_payload: CanvasPayload):
     Endpoint que recebe o canva do perfil da asa
     """
     
-    # Lógica de validação do canva
+    # TODO Adicionar lógica de validação do canva
     
     return {
         "mensagem": "Desenho recebido com sucesso!",

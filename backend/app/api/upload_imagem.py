@@ -13,7 +13,7 @@ async def upload_imagem(payload: ImagePayLoad):
     """
     Endpoint POST da imagem do perfil da asa
     """
-    # A aplicar lógica de validação
+    # TODO A aplicar lógica de validação da imagem
     
     return {
         "mensagem": "Imagem recebida e processada com sucesso!",
