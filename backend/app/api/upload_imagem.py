@@ -1,0 +1,22 @@
+from fastapi import APIRouter
+from pydantic import BaseModel
+
+upload_imagem_router = APIRouter(prefix="/upload/imagem", tags=["upload_imagem"])
+
+class ImagePayLoad(BaseModel):
+    nome: str
+    dados_base64: str 
+    
+
+@upload_imagem_router.post("upload/imagem")
+async def upload_imagem(payload: ImagePayLoad):
+    """
+    Endpoint POST da imagem do perfil da asa
+    """
+    # A aplicar lógica de validação
+    
+    return {
+        "mensagem": "Imagem recebida e processada com sucesso!",
+        "nome": payload.nome
+    }
+    
