@@ -23,7 +23,7 @@ def format_input_payload(payload: InputPayload):
     
     
 @input_data_router.post("/")
-async def input_data(input_payload: InputPayload):
+async def input_datas(input_payload: InputPayload):
     """
     Endpoint que recebe as informações do aermodelo
     """

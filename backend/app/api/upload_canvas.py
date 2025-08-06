@@ -8,7 +8,7 @@ class CanvasPayload(BaseModel):
     dado_base64: str
 
 @upload_canvas_router.post("/")
-async def upload_canva(canva_upload: CanvasPayload):
+async def upload_canvas(canvas_payload: CanvasPayload):
     """
     Endpoint que recebe o canva do perfil da asa
     """
@@ -17,5 +17,5 @@ async def upload_canva(canva_upload: CanvasPayload):
     
     return {
         "mensagem": "Desenho recebido com sucesso!",
-        "nome": canva_upload.nome
+        "nome": canvas_payload.nome
     }
