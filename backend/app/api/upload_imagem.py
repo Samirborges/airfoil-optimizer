@@ -8,7 +8,7 @@ class ImagePayLoad(BaseModel):
     dados_base64: str 
     
 
-@upload_imagem_router.post("upload/imagem")
+@upload_imagem_router.post("/")
 async def upload_imagem(payload: ImagePayLoad):
     """
     Endpoint POST da imagem do perfil da asa

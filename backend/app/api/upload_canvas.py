@@ -7,7 +7,7 @@ class CanvasPayload(BaseModel):
     nome: str
     dado_base64: str
 
-@upload_canvas_router.post("/draw/canvas")
+@upload_canvas_router.post("/")
 async def upload_canva(canva_upload: CanvasPayload):
     """
     Endpoint que recebe o canva do perfil da asa
