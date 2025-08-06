@@ -9,23 +9,28 @@ class InputPayload(BaseModel):
     peso: float
     velocidade: float
     altitude: float
+        
     
-    def __str__(self):
-        return f'''
-    Envergadura: {self.envergadura},
-    Corda: {self.corda},
-    Peso: {self.peso},
-    Velocidade: {self.velocidade},
-    Altitude: {self.altitude},
-    '''
+def format_input_payload(payload: InputPayload):
+    return ( 
+        f"Envergadura: {payload.envergadura},"
+        f"Corda: {payload.corda},"
+        f"Peso: {payload.peso},"
+        f"Velocidade: {payload.velocidade},"
+        f"Altitude: {payload.altitude},"
+    )
+
+    
     
 @input_data_router.post("/")
 async def input_data(input_payload: InputPayload):
     """
     Endpoint que recebe as informações do aermodelo
     """
+    
+    data_format = format_input_payload(input_payload)
 
     return {
         "mensagem": "Dados do modelo recebido com sucesso!",
-        "informações": input_payload
+        "informações": data_format
     }
