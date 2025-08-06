@@ -25,7 +25,7 @@ const CalculatorContainer = ({ config, setConfig }: CalculatorContainerProps) =>
         }))
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if(!formData.envergadura || !formData.cordaMedia || !formData.pesoEstimado || !formData.velocidadeCruzeiro) {
@@ -33,23 +33,43 @@ const CalculatorContainer = ({ config, setConfig }: CalculatorContainerProps) =>
             return;
         }
 
+        const payload = {
+            envergadura: parseFloat(formData.envergadura),
+            corda: parseFloat(formData.cordaMedia),
+            peso: parseFloat(formData.pesoEstimado),
+            velocidade: parseFloat(formData.velocidadeCruzeiro),
+            altitude: parseFloat(formData.altitude) || 0
+        };
+
+
         setConfig(prevConfig => ({
             ...prevConfig,
-            envergadura: parseFloat(formData.envergadura),
-            cordaMedia: parseFloat(formData.cordaMedia),
-            pesoEstimado: parseFloat(formData.pesoEstimado),
-            velocidadeCruzeiro: parseFloat(formData.velocidadeCruzeiro),
-            altitude: parseFloat(formData.altitude) || 0
+            ...payload
         }))
 
-        console.log("Objeto de configuração atualizado:", {
-            ...config,
-            envergadura: parseFloat(formData.envergadura),
-            cordaMedia: parseFloat(formData.cordaMedia),
-            pesoEstimado: parseFloat(formData.pesoEstimado),
-            velocidadeCruzeiro: parseFloat(formData.velocidadeCruzeiro),
-            altitude: parseFloat(formData.altitude) || 0,
-        })
+        console.log("Objeto de configuração atualizado:", payload);
+        try {
+            const response = await fetch("http://127.0.0.1:8000/input/data/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+
+            });
+
+            const result = await response.json();
+            console.log("Resposta da API: ", result)
+
+            if (response.ok) {
+                alert("Dados enviados com sucesso!")
+            } else {
+                alert("Erro ao enviar dados: " + result.detail || "Erro desconhecido");
+            }
+        } catch (error) {
+            console.error("Erro na requisição: ", error);
+            alert("Erro ao conectar com o servidor.")
+        }
     }
 
     const handleReset = () => {
