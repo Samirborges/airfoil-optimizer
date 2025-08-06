@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-upload_canvas_router = APIRouter(prefix="/draw/canvas", tags=["draw_canvas"])
+upload_canvas_router = APIRouter(prefix="/draw/canvas", tags=["upload data"])
 
 class CanvasPayload(BaseModel):
     nome: str

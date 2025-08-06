@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-upload_imagem_router = APIRouter(prefix="/upload/imagem", tags=["upload_imagem"])
+upload_imagem_router = APIRouter(prefix="/upload/imagem", tags=["upload data"])
 
 class ImagePayLoad(BaseModel):
     nome: str
