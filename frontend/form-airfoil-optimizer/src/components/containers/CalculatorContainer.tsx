@@ -47,7 +47,7 @@ const CalculatorContainer = ({ config, setConfig }: CalculatorContainerProps) =>
 
         console.log("Objeto de configuração atualizado:", payload);
         try {
-            const response = await fetch("[http://127.0.0.1:8000/input/data/](http://127.0.0.1:8000/input/data/)", {
+            const response = await fetch("http://127.0.0.1:8000/upload/imagem/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
