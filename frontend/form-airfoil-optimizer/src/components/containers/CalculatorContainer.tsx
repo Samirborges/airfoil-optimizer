@@ -34,22 +34,20 @@ const CalculatorContainer = ({ config, setConfig }: CalculatorContainerProps) =>
         }
 
         const payload = {
+            img: config.img,
             envergadura: parseFloat(formData.envergadura),
-            corda: parseFloat(formData.cordaMedia),
-            peso: parseFloat(formData.pesoEstimado),
-            velocidade: parseFloat(formData.velocidadeCruzeiro),
+            cordaMedia: parseFloat(formData.cordaMedia),
+            pesoEstimado: parseFloat(formData.pesoEstimado),
+            velocidadeCruzeiro: parseFloat(formData.velocidadeCruzeiro),
             altitude: parseFloat(formData.altitude) || 0
         };
 
 
-        setConfig(prevConfig => ({
-            ...prevConfig,
-            ...payload
-        }))
+        setConfig(payload)
 
         console.log("Objeto de configuração atualizado:", payload);
         try {
-            const response = await fetch("http://127.0.0.1:8000/input/data/", {
+            const response = await fetch("[http://127.0.0.1:8000/input/data/](http://127.0.0.1:8000/input/data/)", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

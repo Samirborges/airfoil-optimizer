@@ -1,5 +1,5 @@
 export interface ConfigObject {
-    img: string,
+    img: string | undefined,
     envergadura: number,
     cordaMedia: number,
     pesoEstimado: number,
