@@ -6,26 +6,43 @@ import imagem from "./img/ChatGPT Image 26 de jul. de 2025, 15_34_38.png"
 import CalculatorContainer from "./components/containers/CalculatorContainer"
 import { useState } from "react"
 import type { ConfigObject } from "./types"
+import { useRef } from "react"
 
 function App() {
 
   const [config, setConfig] = useState<ConfigObject>({
-    img: 'a',
+    img: 'placeholder-url', // Placeholder inicial
     envergadura: 0,
     cordaMedia: 0,
     pesoEstimado: 0,
     velocidadeCruzeiro: 0,
     altitude: 0,
-  })
+  });
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [uploadedImage, setUploadedImagem] = useState<string>("https://placehold.co/405x371"); // Estado para a imagem carregada
   
-  const handleClickInvitePhoto = (event: React.MouseEvent<HTMLImageElement>) => {
-    console.log("A imagem à esquerda foi clicada!")
-    console.log(event.target);
-    setConfig(prevConfig => ({
-      ...prevConfig,
-      img: 'imagem-esquerda-selecionada.png'
-    }));
+  const handleClickInvitePhoto = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUploadedImagem(reader.result as string);
+        // Atualiza o estado 'config' com a imagem carregada (como base64)
+        setConfig(prevConfig => ({
+          ...prevConfig,
+          img: reader.result as string
+        }));
+      };
+      reader.readAsDataURL(file); // Lê o arquivo como uma URL de dados (base64)
+    }
+  }
 
   const handleClickMakeDraw = (event: React.MouseEvent<HTMLImageElement>) => {
     console.log("A imagem à direita foi clicada!")
@@ -56,7 +73,19 @@ function App() {
         <Container>
           <ContainerLeft>
           <div className="separed">
-            <img src="https://placehold.co/405x371" alt="Placeholder" className="img-select-input-airfol" onClick={handleClickInvitePhoto} />
+            <img 
+            src={uploadedImage}
+            alt="Imagem Selcionada"
+            className="img-select-input-airfol"
+            onClick={handleClickInvitePhoto} />
+            
+            <input
+            type="file"
+            accept="image/" // Aceita apenas arquivos de imagem
+            ref={fileInputRef}
+            style={{ display: 'none' }}
+            onChange={handleImageUpload}
+            />
           </div>
           </ContainerLeft>
 
