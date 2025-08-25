@@ -33,8 +33,42 @@ const CalculatorContainer = ({ config, setConfig }: CalculatorContainerProps) =>
             return;
         }
 
-        const payload = {
-            img: config.img,
+        let uploadedFilename = null;
+
+        // Passo 1: Enviar a imagem se ela existir
+        if (config.img) {
+            try {
+                const imagePayload = {
+                    img: config.img
+                };
+                const response = await fetch("http://127.0.0.1:8000/upload/imagem/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(imagePayload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || "Erro ao enviar a imagem.");
+                }
+
+                const result = await response.json();
+                uploadedFilename = result.filename;
+                console.log("Imagem enviada com sucesso:", uploadedFilename);
+
+            } catch (error) {
+                console.error("Erro na requisição de imagem: ", error);
+                alert(`Erro ao enviar a imagem:`);
+                //  ${error.message}
+                return; // Impede o envio dos dados se a imagem falhar
+            }
+        }
+
+        // Passo 2: Enviar os dados do formulário com o nome do arquivo da imagem
+        const dataPayload = {
+            img: uploadedFilename, // Inclui o nome do arquivo retornado
             envergadura: parseFloat(formData.envergadura),
             cordaMedia: parseFloat(formData.cordaMedia),
             pesoEstimado: parseFloat(formData.pesoEstimado),
@@ -42,32 +76,28 @@ const CalculatorContainer = ({ config, setConfig }: CalculatorContainerProps) =>
             altitude: parseFloat(formData.altitude) || 0
         };
 
-
-        setConfig(payload)
-
-        console.log("Objeto de configuração atualizado:", payload);
         try {
-            const response = await fetch("http://127.0.0.1:8000/upload/imagem/", {
+            const response = await fetch("http://127.0.0.1:8000/input/airfoil-data/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(payload)
-
+                body: JSON.stringify(dataPayload)
             });
 
             const result = await response.json();
-            console.log("Resposta da API: ", result)
+            console.log("Resposta da API de dados: ", result);
 
             if (response.ok) {
-                alert("Dados enviados com sucesso!")
+                alert("Dados do aeromodelo enviados com sucesso!");
             } else {
-                alert("Erro ao enviar dados: " + result.detail || "Erro desconhecido");
+                alert("Erro ao enviar dados do aeromodelo: " + result.detail || "Erro desconhecido");
             }
+
         } catch (error) {
-            console.error("Erro na requisição: ", error);
-            alert("Erro ao conectar com o servidor.")
-        }
+            console.error("Erro na requisição de dados: ", error);
+            alert("Erro ao conectar com o servidor para enviar os dados.");
+        }        
     }
 
     const handleReset = () => {
@@ -80,6 +110,7 @@ const CalculatorContainer = ({ config, setConfig }: CalculatorContainerProps) =>
         });
         setConfig(prevConfig => ({
             ...prevConfig,
+            img: undefined,
             envergadura: 0,
             cordaMedia: 0,
             pesoEstimado: 0,

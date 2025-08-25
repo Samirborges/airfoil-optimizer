@@ -1,5 +1,20 @@
 from fastapi import APIRouter
-from ..model import AirfoilInputData, APIResponse
+from pydantic import BaseModel
+from typing import Optional
+
+# Definir um novo modelo para os dados do aeromodelo
+class AirfoilInputData(BaseModel):
+    img: Optional[str] = None # Campo para o nome do arquivo da imagem
+    envergadura: float
+    cordaMedia: float
+    pesoEstimado: float
+    velocidadeCruzeiro: float
+    altitude: float
+
+# Este modelo pode ser removido e a função usada diretamente
+class APIResponse(BaseModel):
+    mensagem: str
+    data: dict
 
 airfoil_router = APIRouter(
     prefix="/input/airfoil-data",
@@ -7,22 +22,20 @@ airfoil_router = APIRouter(
 )
     
 def format_input_payload(payload: AirfoilInputData):
-    return ( 
+    return (
+        f"Imagem: {payload.img},"
         f"Envergadura: {payload.envergadura},"
-        f"Corda: {payload.corda},"
-        f"Peso: {payload.peso},"
-        f"Velocidade: {payload.velocidade},"
+        f"Corda: {payload.cordaMedia}," # Corrigido para 'cordaMedia'
+        f"Peso: {payload.pesoEstimado}," # Corrigido para 'pesoEstimado'
+        f"Velocidade: {payload.velocidadeCruzeiro},"
         f"Altitude: {payload.altitude},"
     )
-
-    
     
 @airfoil_router.post("/")
 async def input_datas(input_payload: AirfoilInputData):
     """
     Endpoint que recebe as informações do aermodelo
     """
-    
     # TODO Adicionar validação das informações do Input
     
     data_format = format_input_payload(input_payload)
