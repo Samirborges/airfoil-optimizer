@@ -4,6 +4,7 @@ from typing import Optional
 import base64
 import re
 from pathlib import Path
+from ..cv.contour_extraction import extract_countur
 
 upload_imagem_router = APIRouter(prefix="/upload/imagem", tags=["upload-imagem"])
 
@@ -45,6 +46,7 @@ async def upload_imagem(payload: ImagePayload):
             f.write(img_data)
         
         print(f"Imagem salva em: {file_path}")
+        extract_countur(file_path)
         
         return {"mensagem": "Imagem salva com sucesso!", "filename": filename}
 
