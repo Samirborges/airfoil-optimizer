@@ -14,7 +14,32 @@ img {
     border-radius: 1rem;
 }
 
-.img-select-input-airfol {
+.img-select-input-airfol-2 {
     cursor: pointer;
+    width: 503px !important;
+    height: 596px !important;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease;
 }
 
+.img-select-input-airfol-2:hover {
+    border-color: #007bff;
+    transform: scale(1.02);
+}
+
+.img-select-input-airfol {
+    cursor: pointer;
+    width: 405px !important;
+    height: 371px !important;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.img-select-input-airfol:hover {
+    border-color: #007bff;
+    transform: scale(1.02);
+}
