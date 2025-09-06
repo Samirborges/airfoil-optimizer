@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import Optional
+from ..aero.cl_basic import calculate_cl_basic
 
 # Definir um novo modelo para os dados do aeromodelo
 class AirfoilInputData(BaseModel):
@@ -39,8 +40,15 @@ async def input_datas(input_payload: AirfoilInputData):
     # TODO Adicionar validação das informações do Input
     
     data_format = format_input_payload(input_payload)
+    
+    # TODO fazer o tratamento na chamada da função caso não seja colocado a altitude.
+    lift_coefficient = calculate_cl_basic(input_payload.pesoEstimado, input_payload.velocidadeCruzeiro, input_payload.envergadura, input_payload.envergadura, input_payload.altitude)
+
 
     return APIResponse(
         mensagem="Dados do modelo recebido com sucesso!",
-        data={"informações": data_format}
+        data={
+            "informações": data_format,
+            "cv": lift_coefficient
+        }
     )

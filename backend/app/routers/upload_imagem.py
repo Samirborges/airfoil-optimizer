@@ -5,6 +5,7 @@ import base64
 import re
 from pathlib import Path
 from ..cv.contour_extraction import extract_countur
+import cv2
 
 upload_imagem_router = APIRouter(prefix="/upload/imagem", tags=["upload-imagem"])
 
@@ -46,7 +47,15 @@ async def upload_imagem(payload: ImagePayload):
             f.write(img_data)
         
         print(f"Imagem salva em: {file_path}")
-        extract_countur(file_path)
+        original, contours_drawn = extract_countur(file_path)
+        if original is not None and contours_drawn is not None:
+            # Exibir as imagens
+            cv2.imshow("Imagem Original", original)
+            cv2.imshow("Contornos Encontrados", contours_drawn)
+            
+            # Esperar uma tecla e fechar as janelas
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
         
         return {"mensagem": "Imagem salva com sucesso!", "filename": filename}
 
