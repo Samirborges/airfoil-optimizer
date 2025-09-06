@@ -42,7 +42,7 @@ async def input_datas(input_payload: AirfoilInputData):
     data_format = format_input_payload(input_payload)
     
     # TODO fazer o tratamento na chamada da função caso não seja colocado a altitude.
-    lift_coefficient = calculate_cl_basic(input_payload.pesoEstimado, input_payload.velocidadeCruzeiro, input_payload.envergadura, input_payload.envergadura, input_payload.altitude)
+    lift_coefficient = calculate_cl_basic(input_payload.pesoEstimado, input_payload.velocidadeCruzeiro, input_payload.envergadura, input_payload.cordaMedia, input_payload.altitude)
 
 
     return APIResponse(
