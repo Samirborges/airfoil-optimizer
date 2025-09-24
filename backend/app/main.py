@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .routers import auth, airfoil_data, upload_imagem, upload_canvas
-
+# Adicione optimize_profile na importação
+from .routers import auth, airfoil_data, upload_imagem, upload_canvas, optimize_profile
 
 app = FastAPI(
     title="Airfoil Optimizer API",
@@ -23,6 +23,8 @@ app.include_router(auth.auth_router, tags=["auth"])
 app.include_router(airfoil_data.airfoil_router, tags=["airfoil-data"])
 app.include_router(upload_imagem.upload_imagem_router, tags=["upload-imagem"])
 app.include_router(upload_canvas.upload_canvas_router, tags=["upload-canvas"])
+# Inclua o roteador de otimização aqui
+app.include_router(optimize_profile.optimize_router, tags=["optimize"])
 
 app.add_middleware(
     CORSMiddleware,
