@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FileText } from 'lucide-react';
 import './HeroSection.css';
 import aviaoHero from '../../img/AviaoHero.png';
 
@@ -38,6 +39,7 @@ const HeroSection = () => {
                 Quero testar
               </button>
               <button className="btn-secondary">
+                <FileText className="btn-icon" />
                 Ver documentação
               </button>
             </div>
