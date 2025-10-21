@@ -1,0 +1,422 @@
+.forms-page {
+  min-height: 100vh;
+  width: 100%;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+.forms-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px min(2rem, 4vw) min(2rem, 4vw);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.breadcrumb a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.search-context {
+  background: #dbeafe;
+  border: 1px solid #3b82f6;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  color: #1e40af;
+}
+
+.search-context p {
+  margin: 0;
+}
+
+.upload-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.upload-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #1f2937;
+}
+
+.upload-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.upload-option {
+  border: 3px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, rgba(84, 230, 109, 0.1) 0%, rgba(49, 210, 246, 0.1) 100%);
+  min-height: 300px;
+}
+
+.upload-option:hover {
+  border-color: #10b981;
+  background: linear-gradient(90deg, rgba(84, 230, 109, 0.2) 0%, rgba(49, 210, 246, 0.2) 100%);
+}
+
+.upload-option.active {
+  border-color: #10b981;
+  background: linear-gradient(90deg, rgba(84, 230, 109, 0.25) 0%, rgba(49, 210, 246, 0.25) 100%);
+  border-style: solid;
+}
+
+.upload-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.upload-preview {
+  width: 100%;
+  max-width: 250px;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  display: block;
+  background: none;
+}
+
+.draw-preview {
+  width: 100%;
+  max-width: 150px;
+  height: 100px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  margin: 0 auto 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.airfoil-sketch {
+  width: 80%;
+  height: 60%;
+}
+
+.upload-content p {
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+.optimizer-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.optimizer-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.form-container h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #1f2937;
+}
+
+.optimizer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.btn-submit {
+  background: linear-gradient(90deg, #54e66d 0%, #31d2f6 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(84, 230, 109, 0.3);
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(84, 230, 109, 0.4);
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #ef4444;
+  border: 2px solid #ef4444;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  font-size: 1.1rem;
+}
+
+.btn-cancel:hover {
+  background: #ef4444;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.visualization-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Estilos removidos - usando AirplaneVisualization component agora */
+
+.forms-footer {
+  background: #1f2937;
+  border-radius: 12px;
+  padding: 2rem;
+  color: white;
+}
+
+.forms-footer .footer-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.forms-footer .footer-info p {
+  margin-bottom: 0.5rem;
+  color: #9ca3af;
+}
+
+.forms-footer .footer-info p:first-child {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.forms-footer .footer-contact p {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.forms-footer .contact-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.forms-footer .contact-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  background: #374151;
+  color: white;
+}
+
+.forms-footer .contact-form input::placeholder {
+  color: #9ca3af;
+}
+
+.forms-footer .contact-form button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.forms-footer .contact-form button:hover {
+  background: #2563eb;
+}
+
+@media (max-width: 992px) {
+  .forms-container {
+    padding: 1.5rem;
+  }
+
+  .optimizer-content {
+    gap: 2rem;
+  }
+
+  .upload-options {
+    gap: 1.5rem;
+  }
+
+  .breadcrumb {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .forms-container {
+    padding: 1rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.9rem;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .upload-section h2 {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .upload-options {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 400px;
+  }
+
+  .upload-option {
+    padding: 2rem;
+    min-height: 280px;
+  }
+
+  .optimizer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .form-container h2 {
+    font-size: clamp(1.4rem, 4vw, 1.75rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .airplane-illustration {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .specs-overlay {
+    position: static;
+    margin-top: 1rem;
+  }
+
+  .forms-footer .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .forms-footer .contact-form {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .forms-container {
+    padding: 0.75rem;
+  }
+
+  .upload-section,
+  .optimizer-section,
+  .forms-footer {
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .upload-option {
+    padding: 1.5rem;
+    min-height: 250px;
+  }
+
+  .upload-preview,
+  .draw-preview {
+    max-width: 200px;
+    height: 140px;
+  }
+
+  .airplane-illustration {
+    padding: 1rem;
+  }
+
+  .spec-item {
+    font-size: 0.8rem;
+  }
+
+  .breadcrumb {
+    margin-top: 5rem;
+  }
+}

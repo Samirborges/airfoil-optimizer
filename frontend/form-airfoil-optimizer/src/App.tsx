@@ -1,106 +1,16 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import FormsPage from './pages/FormsPage';
 import "./App.css"
-import Container from "./components/containers/container"
-import ContainerLeft from "./components/containers/containerLeft"
-import ContainerRight from "./components/containers/containerRight"
-import imagem from "./img/ChatGPT Image 26 de jul. de 2025, 15_34_38.png"
-import CalculatorContainer from "./components/containers/CalculatorContainer"
-import { useState } from "react"
-import type { ConfigObject } from "./types"
-import { useRef } from "react"
 
 function App() {
-
-  const [config, setConfig] = useState<ConfigObject>({
-    img: 'placeholder-url', // Placeholder inicial
-    envergadura: 0,
-    cordaMedia: 0,
-    pesoEstimado: 0,
-    velocidadeCruzeiro: 0,
-    altitude: 0,
-  });
-
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [uploadedImage, setUploadedImagem] = useState<string>("https://placehold.co/405x371"); // Estado para a imagem carregada
-  
-  const handleClickInvitePhoto = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
-
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setUploadedImagem(reader.result as string);
-        // Atualiza o estado 'config' com a imagem carregada (como base64)
-        setConfig(prevConfig => ({
-          ...prevConfig,
-          img: reader.result as string
-        }));
-      };
-      reader.readAsDataURL(file); // Lê o arquivo como uma URL de dados (base64)
-    }
-  }
-
-  const handleClickMakeDraw = (event: React.MouseEvent<HTMLImageElement>) => {
-    console.log("A imagem à direita foi clicada!")
-    console.log(event.target)
-    setConfig(prevConfig => ({
-      ...prevConfig,
-      img: "imagem-direita-selecionada.png"
-    }));
-  };
-
   return (
-    <>
-      <section>
-        <Container>
-          <ContainerLeft>
-            <h2>Otimizador de Perfil</h2>
-            <p>
-              Otimize da melhor forma a sua asa com nosso otimizador. Entregando um ótimo desempenho do seu aeromodelo de acordo com as medidas de seu avião.
-            </p>
-          </ContainerLeft>
-          <ContainerRight>
-            <img src={imagem} alt="Otimizador" className="logo-img" />
-          </ContainerRight>
-        </Container>
-      </section>
-
-      <section>
-        <Container>
-          <ContainerLeft>
-          <div className="separed">
-            <img 
-            src={uploadedImage}
-            alt="Imagem Selcionada"
-            className="img-select-input-airfol"
-            onClick={handleClickInvitePhoto} />
-            
-            <input
-            type="file"
-            accept="image/" // Aceita apenas arquivos de imagem
-            ref={fileInputRef}
-            style={{ display: 'none' }}
-            onChange={handleImageUpload}
-            />
-          </div>
-          </ContainerLeft>
-
-
-          <ContainerRight>
-            <img src="https://placehold.co/405x371" alt="Placeholder" className="img-select-input-airfol" onClick={handleClickMakeDraw} />          
-          </ContainerRight>
-        </Container>
-      </section>
-
-
-      <section>
-        <CalculatorContainer config={config} setConfig={setConfig}/>
-      </section>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/forms" element={<FormsPage />} />
+      </Routes>
+    </Router>
   )
 }
 

@@ -1,0 +1,346 @@
+.benefits {
+  padding: 4rem 0;
+  background: #f8fafc;
+  position: relative;
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.benefits-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 min(2rem, 4vw);
+}
+
+.benefits-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.benefits-image {
+  position: relative;
+}
+
+.image-placeholder {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: .4rem;
+  background: linear-gradient(90deg, rgba(84, 230, 109, 0.1), rgba(49, 210, 246, 0.1));
+}
+
+.airplane-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.airplane-photo {
+  width: 100%;
+  height: auto;
+  max-width: 700px;
+  border-radius: 12px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border: 3px dashed;
+  border-image: linear-gradient(90deg, #54e66d, #31d2f6) 1;
+}
+
+.airplane-photo:hover {
+  transform: scale(1.02);
+}
+
+/* Clean image container - similar to Tailwind approach */
+.image-placeholder-clean {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 4px dashed rgba(84, 230, 109, 0.3);
+  padding: 8px;
+}
+
+.airplane-photo-clean {
+  width: 100%;
+  height: auto;
+  max-width: 700px;
+  border-radius: 16px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.tech-points {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.tech-point {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1f2937;
+  white-space: nowrap;
+  animation: pulsePoint 3s ease-in-out infinite;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.point-indicator {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  position: relative;
+}
+
+.point-indicator::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 50%;
+  top: -4px;
+  left: -4px;
+  animation: ripple 2s ease-out infinite;
+}
+
+@keyframes pulsePoint {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+
+
+.benefits-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.highlight {
+  color: #3b82f6;
+}
+
+.benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.benefit-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.benefit-content {
+  flex: 1;
+}
+
+.benefit-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+
+.benefit-content p {
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  .benefits-content {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .benefits {
+    padding: 4rem 0;
+  }
+
+  .benefits-container {
+    padding: 0 1rem;
+  }
+
+  .benefits-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .benefits-title {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .image-placeholder {
+    padding: 2rem;
+    order: 1;
+  }
+
+  .airplane-photo {
+    max-width: 400px;
+  }
+
+  .tech-point {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .benefit-item {
+    padding: 1.25rem;
+  }
+
+  .benefit-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
+  }
+
+  .benefit-content h3 {
+    font-size: clamp(1rem, 3vw, 1.1rem);
+  }
+
+  .benefit-content p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .benefits {
+    padding: 3rem 0;
+  }
+
+  .benefits-container {
+    padding: 0 0.75rem;
+  }
+
+  .benefits-content {
+    gap: 1.5rem;
+  }
+
+  .image-placeholder {
+    padding: 1.5rem;
+  }
+
+  .airplane-photo {
+    max-width: 350px;
+  }
+
+  .tech-point {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.6rem;
+    position: static !important;
+    margin: 0.3rem;
+    display: inline-flex;
+  }
+
+  .tech-points {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    right: 0;
+  }
+
+  .benefit-item {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    margin: 0 auto 1rem;
+  }
+
+  /* Responsive styles for clean image */
+  .airplane-photo-clean {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .airplane-photo-clean {
+    max-width: 350px;
+  }
+
+  .image-placeholder-clean {
+    padding: 6px;
+    border-width: 3px;
+  }
+}
