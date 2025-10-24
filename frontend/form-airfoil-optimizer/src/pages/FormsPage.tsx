@@ -1,21 +1,22 @@
-import { useState, useRef } from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import Header from '../components/common/Header';
-import Slider from '../components/ui/Slider';
-import AirplaneVisualization from '../components/ui/AirplaneVisualization';
-import type { ConfigObject } from '../types';
-import { v4 as uuidv4 } from 'uuid';
-import { Camera, Pencil, Send } from 'lucide-react';
-import imagemSelecionarModelo from '../img/imagem-selecionar-modelo.png';
-import desenharPerfil from '../img/desenhar-perfil.png';
-import './FormsPage.css';
+import { useState, useRef } from "react";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import Header from "../components/common/Header";
+import Slider from "../components/ui/Slider";
+import AirplaneVisualization from "../components/ui/AirplaneVisualization";
+import type { ConfigObject } from "../types";
+import { v4 as uuidv4 } from "uuid";
+import { Camera, Pencil, Send } from "lucide-react";
+import imagemSelecionarModelo from "../img/imagem-selecionar-modelo.png";
+import desenharPerfil from "../img/desenhar-perfil.png";
+import "./FormsPage.css";
 
 const FormsPage = () => {
   const location = useLocation();
-  const searchQuery = location.state?.searchQuery || '';
+  const searchQuery = location.state?.searchQuery || "";
+  const navigate = useNavigate();
 
   const [config, setConfig] = useState<ConfigObject>({
-    img: 'placeholder-url',
+    img: "placeholder-url",
     envergadura: 0,
     cordaMedia: 0,
     pesoEstimado: 0,
@@ -31,19 +32,23 @@ const FormsPage = () => {
     altitude: 0,
   });
 
-  const [uploadedImage, setUploadedImagem] = useState<string>("https://placehold.co/405x371");
+  const [uploadedImage, setUploadedImagem] = useState<string>(
+    "https://placehold.co/405x371"
+  );
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [activeUploadMethod, setActiveUploadMethod] = useState<'photo' | 'draw' | null>(null);
+  const [activeUploadMethod, setActiveUploadMethod] = useState<
+    "photo" | "draw" | null
+  >(null);
 
   const handleSliderChange = (name: string, value: number) => {
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleClickInvitePhoto = () => {
-    setActiveUploadMethod('photo');
+    setActiveUploadMethod("photo");
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
@@ -55,9 +60,9 @@ const FormsPage = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setUploadedImagem(reader.result as string);
-        setConfig(prevConfig => ({
+        setConfig((prevConfig) => ({
           ...prevConfig,
-          img: reader.result as string
+          img: reader.result as string,
         }));
       };
       reader.readAsDataURL(file);
@@ -65,10 +70,10 @@ const FormsPage = () => {
   };
 
   const handleClickMakeDraw = () => {
-    setActiveUploadMethod('draw');
-    setConfig(prevConfig => ({
+    setActiveUploadMethod("draw");
+    setConfig((prevConfig) => ({
       ...prevConfig,
-      img: "imagem-direita-selecionada.png"
+      img: "imagem-direita-selecionada.png",
     }));
   };
 
@@ -99,7 +104,7 @@ const FormsPage = () => {
       img: config.img,
     };
 
-    setConfig(prevConfig => ({
+    setConfig((prevConfig) => ({
       ...prevConfig,
       ...dataPayload,
     }));
@@ -135,6 +140,7 @@ const FormsPage = () => {
         );
         const debugResult = await debugResponse.json();
         console.log("Payload consolidado:", debugResult);
+        navigate("/results", { state: { payload: debugResult } });
         alert(
           "Dados enviados com sucesso! Verifique o console e o terminal do servidor."
         );
@@ -155,7 +161,7 @@ const FormsPage = () => {
       velocidadeCruzeiro: 0,
       altitude: 0,
     });
-    setConfig(prevConfig => ({
+    setConfig((prevConfig) => ({
       ...prevConfig,
       envergadura: 0,
       cordaMedia: 0,
@@ -170,7 +176,7 @@ const FormsPage = () => {
   return (
     <div className="forms-page">
       <Header />
-      
+
       <div className="forms-container">
         <div className="breadcrumb">
           <Link to="/">AeroProfile AI</Link>
@@ -180,41 +186,65 @@ const FormsPage = () => {
 
         {searchQuery && (
           <div className="search-context">
-            <p>Otimizando baseado em: <strong>"{searchQuery}"</strong></p>
+            <p>
+              Otimizando baseado em: <strong>"{searchQuery}"</strong>
+            </p>
           </div>
         )}
 
         <section className="upload-section">
           <h2>Selecione opção de upload do perfil</h2>
           <div className="upload-options">
-            <div 
-              className={`upload-option ${activeUploadMethod === 'photo' ? 'active' : ''}`}
+            <div
+              className={`upload-option ${
+                activeUploadMethod === "photo" ? "active" : ""
+              }`}
               onClick={handleClickInvitePhoto}
             >
               <div className="upload-content">
-                <img 
-                  src={activeUploadMethod === 'photo' ? uploadedImage : imagemSelecionarModelo}
+                <img
+                  src={
+                    activeUploadMethod === "photo"
+                      ? uploadedImage
+                      : imagemSelecionarModelo
+                  }
                   alt="Foto do aeromodelo"
                   className="upload-preview"
                 />
-                <p style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center' }}>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    justifyContent: "center",
+                  }}
+                >
                   <Camera size={20} />
                   Foto do aeromodelo
                 </p>
               </div>
             </div>
 
-            <div 
-              className={`upload-option ${activeUploadMethod === 'draw' ? 'active' : ''}`}
+            <div
+              className={`upload-option ${
+                activeUploadMethod === "draw" ? "active" : ""
+              }`}
               onClick={handleClickMakeDraw}
             >
               <div className="upload-content">
-                <img 
+                <img
                   src={desenharPerfil}
                   alt="Desenhar perfil"
                   className="upload-preview"
                 />
-                <p style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center' }}>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    justifyContent: "center",
+                  }}
+                >
                   <Pencil size={20} />
                   Desenhar perfil
                 </p>
@@ -226,7 +256,7 @@ const FormsPage = () => {
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
             onChange={handleImageUpload}
           />
         </section>
@@ -304,7 +334,11 @@ const FormsPage = () => {
                   <button type="submit" className="btn-submit">
                     Enviar
                   </button>
-                  <button type="button" className="btn-cancel" onClick={handleReset}>
+                  <button
+                    type="button"
+                    className="btn-cancel"
+                    onClick={handleReset}
+                  >
                     Cancelar
                   </button>
                 </div>
@@ -333,7 +367,13 @@ const FormsPage = () => {
               <p>Dúvidas? Envie uma mensagem</p>
               <div className="contact-form">
                 <input type="text" placeholder="Digite algo..." />
-                <button style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <button
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
                   <Send size={16} />
                   Enviar
                 </button>
