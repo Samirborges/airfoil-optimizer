@@ -1,0 +1,59 @@
+
+.page-result {
+    padding: 2rem 4rem;
+}
+
+.title-analysis {
+    font-size: 2rem;
+}
+
+.line-info-perfil {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    margin-top: 1rem;
+}
+
+.container-info {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    padding-bottom: .5rem;
+    gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-bottom: 3rem;
+
+    h4 {
+        margin-bottom: 1rem;
+        font-weight: normal;
+    }
+
+    p {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+}
+
+.ajustes-geometricos-container {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 2rem;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+    padding-left: 3rem;
+
+    li {
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+/* Apenas para dar espaçamento (isso é temporario) */
+footer {
+    height: 5rem;
+}
