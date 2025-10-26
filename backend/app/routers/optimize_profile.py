@@ -18,7 +18,7 @@ async def debug_payload(session_id: str):
         
         # Enviando para o n8n 
         # TODO Trocar para URL de produção
-        WEB_HOOK_URL = "https://corvosaerodesign.app.n8n.cloud/webhook-test/a7550ac0-8b33-4076-8b47-bec3996cefd1"
+        WEB_HOOK_URL = "https://corvosaerodesign.app.n8n.cloud/webhook/a7550ac0-8b33-4076-8b47-bec3996cefd1"
 
         response = requests.post(WEB_HOOK_URL, json=payload)
         
