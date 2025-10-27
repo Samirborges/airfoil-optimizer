@@ -33,7 +33,7 @@ const FormsPage = () => {
   });
 
   const [uploadedImage, setUploadedImagem] = useState<string>(
-    "https://placehold.co/405x371"
+    "/src/img/imagem-selecionar-modelo.png"
   );
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [activeUploadMethod, setActiveUploadMethod] = useState<
@@ -194,7 +194,7 @@ const FormsPage = () => {
 
         <section className="upload-section">
           <h2>Selecione opção de upload do perfil</h2>
-          <div className="upload-options">
+          <div className="upload-options-temporario">
             <div
               className={`upload-option ${
                 activeUploadMethod === "photo" ? "active" : ""
@@ -225,7 +225,7 @@ const FormsPage = () => {
               </div>
             </div>
 
-            <div
+            {/* <div
               className={`upload-option ${
                 activeUploadMethod === "draw" ? "active" : ""
               }`}
@@ -249,7 +249,7 @@ const FormsPage = () => {
                   Desenhar perfil
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <input
