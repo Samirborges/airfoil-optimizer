@@ -46,8 +46,8 @@ async def upload_imagem(
             save_image_data(session_id, normalized_contour, filename)
 
         if original is not None and contours_drawn is not None:
-            cv2.imshow("Imagem Original", original)
-            cv2.imshow("Contornos Encontrados", contours_drawn)
+            # cv2.imshow("Imagem Original", original)
+            # cv2.imshow("Contornos Encontrados", contours_drawn)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
         

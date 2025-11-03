@@ -33,12 +33,12 @@ if __name__ == "__main__":
     image_path = "../../uploaded_images/perfil_de_asa.jpg"
 
     original, contours_drawn, normalized_contour = extract_countur(image_path)
-    if original is not None and contours_drawn is not None:
-        cv2.imshow("Imagem Original", original)
-        cv2.imshow("Contornos Encontrados", contours_drawn)
+    # if original is not None and contours_drawn is not None:
+    #     cv2.imshow("Imagem Original", original)
+    #     cv2.imshow("Contornos Encontrados", contours_drawn)
         
-        if normalized_contour is not None:
-            print("Contorno normalizado:", normalized_contour)
+    #     if normalized_contour is not None:
+    #         print("Contorno normalizado:", normalized_contour)
         
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+    #     cv2.waitKey(0)
+    #     cv2.destroyAllWindows()
