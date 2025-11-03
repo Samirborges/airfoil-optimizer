@@ -5,9 +5,10 @@ import Slider from "../components/ui/Slider";
 import AirplaneVisualization from "../components/ui/AirplaneVisualization";
 import type { ConfigObject } from "../types";
 import { v4 as uuidv4 } from "uuid";
-import { Camera, Pencil, Send } from "lucide-react";
+// import { Camera, Pencil, Send } from "lucide-react";
+import { Camera, Send } from "lucide-react";
 import imagemSelecionarModelo from "../img/imagem-selecionar-modelo.png";
-import desenharPerfil from "../img/desenhar-perfil.png";
+// import desenharPerfil from "../img/desenhar-perfil.png";
 import "./FormsPage.css";
 
 const FormsPage = () => {
@@ -69,13 +70,13 @@ const FormsPage = () => {
     }
   };
 
-  const handleClickMakeDraw = () => {
-    setActiveUploadMethod("draw");
-    setConfig((prevConfig) => ({
-      ...prevConfig,
-      img: "imagem-direita-selecionada.png",
-    }));
-  };
+  // const handleClickMakeDraw = () => {
+  //   setActiveUploadMethod("draw");
+  //   setConfig((prevConfig) => ({
+  //     ...prevConfig,
+  //     img: "imagem-direita-selecionada.png",
+  //   }));
+  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
