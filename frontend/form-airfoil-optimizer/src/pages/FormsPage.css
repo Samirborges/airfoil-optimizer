@@ -73,6 +73,15 @@
   margin: 0 auto;
 }
 
+/* Classe temporária para centralizar uma única opção de upload */
+.upload-options-temporario {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
 .upload-option {
   border: 3px dashed #d1d5db;
   border-radius: 12px;
@@ -333,6 +342,10 @@
     max-width: 400px;
   }
 
+  .upload-options-temporario {
+    max-width: 400px;
+  }
+
   .upload-option {
     padding: 2rem;
     min-height: 280px;
@@ -394,6 +407,10 @@
   .forms-footer {
     padding: 1.5rem;
     border-radius: 8px;
+  }
+
+  .upload-options-temporario {
+    max-width: 320px;
   }
 
   .upload-option {
