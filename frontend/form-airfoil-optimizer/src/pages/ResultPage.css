@@ -70,12 +70,13 @@ main {
 
 .title-analysis {
     font-size: 2rem;
+    margin-top: 2rem;
 }
 
 .line-info-perfil {
     display: flex;
-    flex-direction: row;
-    gap: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
     margin-top: 1rem;
 }
 
@@ -88,7 +89,6 @@ main {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin-bottom: 3rem;
 
     h4 {
         margin-bottom: 1rem;
