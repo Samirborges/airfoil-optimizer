@@ -4,10 +4,15 @@ import requests
 from google import genai
 import json
 from ..services.make_prompt import make_prompt
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+GEN_API = os.getenv("GEN_API")
 
 optimize_router = APIRouter(prefix="/optimize", tags=["optimize"])
 
-client = genai.Client(api_key="AIzaSyDEvBn4KOeb5hobIm-crF9SAS9H5Gh440s")
+client = genai.Client(api_key=GEN_API)
 
 @optimize_router.get("/debug/{session_id}")
 async def debug_payload(session_id: str):
@@ -56,11 +61,6 @@ async def debug_payload(session_id: str):
        
         try:
             response = client.models.generate_content(model="gemini-flash-latest", contents=PROMPT)
-            
-            print("\n===== RESPOSTA DA IA =====")
-            print(json.dumps(optimize_result, indent=4, ensure_ascii=False))
-            print("==========================\n")
-            
             optimize_result = json.loads(response.text.replace("```json", "").replace("```", ""))
             
         except ValueError:
