@@ -6,7 +6,7 @@ JSON_TEMPLATE = """
     "analysis": {
         "max_thickness": "string (e.g. '12.4%')",
         "camber_position": "string (e.g. '40%')",
-        "estimated_profile": "string (e.g. 'NACA 2412')",
+        "estimated_profile": "string (e.g. 'NACA 2412') - APENAS O PERFIL!",
         "estimated_CL": "float",
         "estimated_CD": "float",
         "lift_to_drag_ratio": "float"
